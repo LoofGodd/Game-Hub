@@ -8,7 +8,7 @@ interface Props {
 }
 export default function GameCard({ game }: Props) {
   return (
-    <Card borderRadius={16} overflow="hidden">
+    <Card width="300px" borderRadius={16} overflow="hidden">
       <Image src={getCroppedImageUrl(game.background_image)} />
       <CardBody>
         <Heading fontSize={"xl"}>{game.name}</Heading>
