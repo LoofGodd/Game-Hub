@@ -6,5 +6,5 @@ export interface Platform {
   slug: string
 }
 
-const usePlatforms = () => useData<Platform>("/genres")
+const usePlatforms = () => useData<Platform>("/platforms/lists/parents")
 export default usePlatforms
