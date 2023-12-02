@@ -3,9 +3,13 @@ import useGames from "../hooks/useGame"
 import GameCard from "./GameCard"
 import SkeletonGameCard from "./SkeletonGameCard"
 import GameCardContainer from "./GameCardContainer"
+import { Genre } from "../hooks/useGenre"
+interface Props {
+  selectedGenre: Genre | null
+}
 
-export default function GameGrid() {
-  const { data, error, isLoading } = useGames()
+export default function GameGrid({ selectedGenre }: Props) {
+  const { data, error, isLoading } = useGames(selectedGenre)
   const skeletons = [1, 2, 3, 4, 5, 6]
   return (
     <>

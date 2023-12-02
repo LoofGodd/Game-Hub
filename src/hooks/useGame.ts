@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import apiClient from "../services/api-client"
 import { CanceledError } from "axios"
 import useData from "./useData"
+import { Genre } from "./useGenre"
 
 export interface PlatForm {
   id: number
@@ -17,28 +18,9 @@ export interface Game {
   metacritic: number
 }
 
-const useGames = () => useData<Game>("/games")
-// const useGames = () => {
-//   const [games, setGames] = useState<Game[]>([])
-//   const [error, setError] = useState("")
-//   const [isLoading, setIsLoading] = useState(false)
-//   useEffect(() => {
-//     const controller = new AbortController()
-//     setIsLoading(true)
-//     apiClient
-//       .get<FetchGamesData>("/games")
-//       .then((res) => {
-//         setGames(res.data.results)
-//       })
-//       .catch((err) => {
-//         if (err instanceof CanceledError) return
-//         setError(err.message)
-//       })
-//       .finally(() => {
-//         setIsLoading(false)
-//       })
-//     return () => controller.abort()
-//   }, [])
-//   return { games, error, isLoading }
-// }
+const useGames = (selectedGenre: Genre | null) =>
+  useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
+    selectedGenre?.id,
+  ])
+
 export default useGames
